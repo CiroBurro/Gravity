@@ -1,8 +1,11 @@
 use bevy::prelude::*;
 
+/// Configuration parameters for the gravity simulation.
 #[derive(Resource)]
 pub struct GravitySettings {
+    /// Gravitational constant (scaled for simulation)
     pub g: f32,
+    /// Softening factor to prevent singularities when bodies are very close
     pub softening: f32,
 }
 

@@ -1,3 +1,8 @@
+//! Gravity simulation merging computer science with physics.
+//!
+//! This application simulates gravitational interactions between celestial bodies
+//! using Newtonian physics and the Bevy game engine for visualization.
+
 pub mod components;
 pub mod physics;
 
@@ -16,6 +21,9 @@ fn main() {
         .run();
 }
 
+/// Initializes the simulation scene with camera, lighting, and celestial bodies.
+///
+/// Sets up the Solar System with the Sun and inner planets (Mercury, Venus, Earth, Mars, Jupiter).
 fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,

@@ -4,6 +4,7 @@ use crate::{
 };
 use bevy::prelude::*;
 
+/// Bevy plugin that manages physics simulation systems.
 pub struct PhysicsPlugin;
 
 impl Plugin for PhysicsPlugin {
@@ -14,6 +15,10 @@ impl Plugin for PhysicsPlugin {
     }
 }
 
+/// Calculates and applies gravitational forces between all celestial bodies.
+///
+/// Uses Newton's law of universal gravitation with a softening factor
+/// to prevent numerical instabilities when bodies are very close.
 fn apply_gravity(
     mut query: Query<(&CaelestialBody, &mut Velocity, &Transform)>,
     settings: Res<GravitySettings>,
@@ -43,12 +48,16 @@ fn apply_gravity(
     }
 }
 
+/// Updates positions of celestial bodies based on their velocities.
 fn update_positions(mut query: Query<(&Velocity, &mut Transform)>, time: Res<Time>) {
     for (vel, mut pos) in query.iter_mut() {
         pos.translation += vel.0 * time.delta_secs();
     }
 }
 
+/// Calculates gravitational force between two masses.
+///
+/// F = G * m1 * m2 / (r^2 + softening)
 fn get_gravitation_force(m1: f32, m2: f32, g: f32, delta: Vec3, softening: f32) -> Vec3 {
     let module: f32 = g * m1 * m2 / (delta.length().powf(2.0) + softening);
 
