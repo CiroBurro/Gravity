@@ -1,0 +1,33 @@
+SCALE CONVERSIONS
+=================
+
+Units used in the simulation:
+
+MASS: 1 unit = 10^24 kg
+-----
+Sun:     1989000.0 units = 1.989 × 10^30 kg
+Jupiter: 1898.0 units    = 1.898 × 10^27 kg
+Earth:   5.97 units      = 5.97 × 10^24 kg
+Venus:   4.87 units      = 4.87 × 10^24 kg
+Mars:    0.64 units      = 6.4 × 10^23 kg
+Mercury: 0.33 units      = 3.3 × 10^23 kg
+
+DISTANCE: 1 unit = 1 million km = 10^9 meters
+---------
+Jupiter: 778.5 units  = 778.5 million km = 5.2 AU
+Mars:    227.9 units  = 227.9 million km = 1.52 AU
+Earth:   149.6 units  = 149.6 million km = 1.0 AU
+Venus:   108.2 units  = 108.2 million km = 0.72 AU
+Mercury: 57.9 units   = 57.9 million km  = 0.39 AU
+
+VELOCITY: 1 unit = 1 km/s
+---------
+Mercury: -47.87 units = 47.87 km/s
+Venus:   -35.02 units = 35.02 km/s
+Earth:   -29.78 units = 29.78 km/s
+Mars:    -24.07 units = 24.07 km/s
+Jupiter: -13.07 units = 13.07 km/s
+
+GRAVITATIONAL CONSTANT: G (tuned for this scale)
+-----------------------
+Adjust in src/physics/settings.rs to balance orbital stability
