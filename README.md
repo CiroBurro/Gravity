@@ -47,7 +47,7 @@ A softening factor is added to prevent numerical instabilities when bodies get v
 ## TODO
 
 - [ ] Add remaining planets (Saturn, Uranus, Neptune) and adjust camera positioning
-- [ ] Implement 2D grid visualization of spacetime curvature
+- [X] Implement 2D grid visualization of spacetime curvature
 - [ ] Add runtime parameter adjustment menu (advanced feature)
 
 ## License

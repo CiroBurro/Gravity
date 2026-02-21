@@ -4,19 +4,24 @@
 //! using Newtonian physics and the Bevy game engine for visualization.
 
 pub mod components;
+pub mod grid;
 pub mod physics;
 
 use bevy::{
-    color::palettes::css::{BLUE, ORANGE, ORANGE_RED, RED, SANDY_BROWN, YELLOW},
+    color::palettes::css::{BLACK, BLUE, ORANGE, ORANGE_RED, RED, SANDY_BROWN, YELLOW},
     prelude::*,
 };
 use components::*;
 use physics::systems::PhysicsPlugin;
 
+use grid::GridPlugin;
+
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_plugins(PhysicsPlugin)
+        .add_plugins(GridPlugin)
+        .insert_resource(ClearColor(Color::from(BLACK).lighter(0.005)))
         .add_systems(Startup, setup)
         .run();
 }
@@ -31,13 +36,13 @@ fn setup(
 ) {
     commands.spawn((
         Camera3d::default(),
-        Transform::from_xyz(0.0, 1000.0, 400.0).looking_at(Vec3::ZERO, Vec3::Y),
+        Transform::from_xyz(0.0, 200.0, 700.0).looking_at(Vec3::ZERO, Vec3::Y),
     ));
 
     commands.spawn((
         PointLight {
-            intensity: 10_000_000.0,
-            range: 2000.0,
+            intensity: 50_000_000.0,
+            range: 4000.0,
             shadows_enabled: true,
             ..default()
         },
@@ -50,7 +55,7 @@ fn setup(
             mass: 1989000.0,
         },
         velocity: Velocity(Vec3::ZERO),
-        mesh: Mesh3d(meshes.add(Sphere::new(15.0))),
+        mesh: Mesh3d(meshes.add(Sphere::new(30.0))),
         material: MeshMaterial3d(materials.add(Color::from(RED))),
         transform: Transform::from_xyz(0.0, 0.0, 0.0),
         ..Default::default()
@@ -61,7 +66,7 @@ fn setup(
             mass: 0.33,
         },
         velocity: Velocity(Vec3::new(0.0, 0.0, -47.87)),
-        mesh: Mesh3d(meshes.add(Sphere::new(3.0))),
+        mesh: Mesh3d(meshes.add(Sphere::new(6.0))),
         material: MeshMaterial3d(materials.add(Color::from(SANDY_BROWN))),
         transform: Transform::from_xyz(57.9, 0.0, 0.0),
         ..Default::default()
@@ -73,7 +78,7 @@ fn setup(
             mass: 4.87,
         },
         velocity: Velocity(Vec3::new(0.0, 0.0, -35.02)),
-        mesh: Mesh3d(meshes.add(Sphere::new(4.5))),
+        mesh: Mesh3d(meshes.add(Sphere::new(9.0))),
         material: MeshMaterial3d(materials.add(Color::from(ORANGE))),
         transform: Transform::from_xyz(108.2, 0.0, 0.0),
         ..Default::default()
@@ -85,7 +90,7 @@ fn setup(
             mass: 5.97,
         },
         velocity: Velocity(Vec3::new(0.0, 0.0, -29.78)),
-        mesh: Mesh3d(meshes.add(Sphere::new(5.0))),
+        mesh: Mesh3d(meshes.add(Sphere::new(10.0))),
         material: MeshMaterial3d(materials.add(Color::from(BLUE))),
         transform: Transform::from_xyz(149.6, 0.0, 0.0),
         ..Default::default()
@@ -97,7 +102,7 @@ fn setup(
             mass: 0.64,
         },
         velocity: Velocity(Vec3::new(0.0, 0.0, -24.07)),
-        mesh: Mesh3d(meshes.add(Sphere::new(3.5))),
+        mesh: Mesh3d(meshes.add(Sphere::new(7.0))),
         material: MeshMaterial3d(materials.add(Color::from(ORANGE_RED))),
         transform: Transform::from_xyz(227.9, 0.0, 0.0),
         ..Default::default()
@@ -109,7 +114,7 @@ fn setup(
             mass: 1898.0,
         },
         velocity: Velocity(Vec3::new(0.0, 0.0, -13.07)),
-        mesh: Mesh3d(meshes.add(Sphere::new(12.0))),
+        mesh: Mesh3d(meshes.add(Sphere::new(24.0))),
         material: MeshMaterial3d(materials.add(Color::from(YELLOW))),
         transform: Transform::from_xyz(778.5, 0.0, 0.0),
         ..Default::default()
