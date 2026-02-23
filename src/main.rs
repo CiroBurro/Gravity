@@ -8,7 +8,9 @@ pub mod grid;
 pub mod physics;
 
 use bevy::{
-    color::palettes::css::{BLACK, BLUE, ORANGE, ORANGE_RED, RED, SANDY_BROWN, YELLOW},
+    color::palettes::css::{
+        BLACK, BLUE, DARK_BLUE, LIGHT_BLUE, ORANGE, ORANGE_RED, RED, SANDY_BROWN, TAN, YELLOW,
+    },
     prelude::*,
 };
 use components::*;
@@ -36,7 +38,7 @@ fn setup(
 ) {
     commands.spawn((
         Camera3d::default(),
-        Transform::from_xyz(0.0, 200.0, 700.0).looking_at(Vec3::ZERO, Vec3::Y),
+        Transform::from_xyz(0.0, 600.0, 1000.0).looking_at(Vec3::ZERO, Vec3::Y),
     ));
 
     commands.spawn((
@@ -117,6 +119,42 @@ fn setup(
         mesh: Mesh3d(meshes.add(Sphere::new(24.0))),
         material: MeshMaterial3d(materials.add(Color::from(YELLOW))),
         transform: Transform::from_xyz(778.5, 0.0, 0.0),
+        ..Default::default()
+    });
+
+    commands.spawn(CaelestialBodyBundle {
+        body: CaelestialBody {
+            name: "Saturn".to_string(),
+            mass: 568.5,
+        },
+        velocity: Velocity(Vec3::new(0.0, 0.0, -9.64)),
+        mesh: Mesh3d(meshes.add(Sphere::new(20.0))),
+        material: MeshMaterial3d(materials.add(Color::from(TAN))),
+        transform: Transform::from_xyz(1432.0, 0.0, 0.0),
+        ..Default::default()
+    });
+
+    commands.spawn(CaelestialBodyBundle {
+        body: CaelestialBody {
+            name: "Neptune".to_string(),
+            mass: 102.4,
+        },
+        velocity: Velocity(Vec3::new(0.0, 0.0, -5.5)),
+        mesh: Mesh3d(meshes.add(Sphere::new(16.0))),
+        material: MeshMaterial3d(materials.add(Color::from(DARK_BLUE))),
+        transform: Transform::from_xyz(4498.0, 0.0, 0.0),
+        ..Default::default()
+    });
+
+    commands.spawn(CaelestialBodyBundle {
+        body: CaelestialBody {
+            name: "Uranus".to_string(),
+            mass: 86.82,
+        },
+        velocity: Velocity(Vec3::new(0.0, 0.0, -6.83)),
+        mesh: Mesh3d(meshes.add(Sphere::new(16.0))),
+        material: MeshMaterial3d(materials.add(Color::from(LIGHT_BLUE))),
+        transform: Transform::from_xyz(2871.0, 0.0, 0.0),
         ..Default::default()
     });
 }

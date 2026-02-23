@@ -45,8 +45,8 @@ fn spawn_grid(
         GravityGrid,
         Mesh3d(
             meshes.add(
-                PlaneMeshBuilder::from_size(Vec2::new(2000.0, 2000.0))
-                    .subdivisions(80)
+                PlaneMeshBuilder::from_size(Vec2::new(5000.0, 5000.0))
+                    .subdivisions(100)
                     .build(),
             ),
         ),

@@ -7,6 +7,9 @@ MASS: 1 unit = 10^24 kg
 -----
 Sun:     1989000.0 units = 1.989 × 10^30 kg
 Jupiter: 1898.0 units    = 1.898 × 10^27 kg
+Saturn:  568.5 units     = 5.685 × 10^26 kg
+Neptune: 102.4 units     = 1.024 × 10^26 kg
+Uranus:  86.82 units     = 8.682 × 10^25 kg
 Earth:   5.97 units      = 5.97 × 10^24 kg
 Venus:   4.87 units      = 4.87 × 10^24 kg
 Mars:    0.64 units      = 6.4 × 10^23 kg
@@ -14,11 +17,14 @@ Mercury: 0.33 units      = 3.3 × 10^23 kg
 
 DISTANCE: 1 unit = 1 million km = 10^9 meters
 ---------
-Jupiter: 778.5 units  = 778.5 million km = 5.2 AU
-Mars:    227.9 units  = 227.9 million km = 1.52 AU
-Earth:   149.6 units  = 149.6 million km = 1.0 AU
-Venus:   108.2 units  = 108.2 million km = 0.72 AU
-Mercury: 57.9 units   = 57.9 million km  = 0.39 AU
+Neptune: 4498.0 units  = 4498 million km  = 30.0 AU
+Uranus:  2871.0 units  = 2871 million km  = 19.19 AU
+Saturn:  1432.0 units  = 1432 million km  = 9.57 AU
+Jupiter: 778.5 units   = 778.5 million km = 5.2 AU
+Mars:    227.9 units   = 227.9 million km = 1.52 AU
+Earth:   149.6 units   = 149.6 million km = 1.0 AU
+Venus:   108.2 units   = 108.2 million km = 0.72 AU
+Mercury: 57.9 units    = 57.9 million km  = 0.39 AU
 
 VELOCITY: 1 unit = 1 km/s
 ---------
@@ -27,6 +33,27 @@ Venus:   -35.02 units = 35.02 km/s
 Earth:   -29.78 units = 29.78 km/s
 Mars:    -24.07 units = 24.07 km/s
 Jupiter: -13.07 units = 13.07 km/s
+Saturn:  -9.64 units  = 9.64 km/s
+Uranus:  -6.83 units  = 6.83 km/s
+Neptune: -5.5 units   = 5.5 km/s
+
+SPHERE SIZE (visual representation, not to scale)
+-----------
+Sun:     30.0 units
+Jupiter: 24.0 units
+Saturn:  20.0 units
+Uranus:  16.0 units
+Neptune: 16.0 units
+Earth:   10.0 units
+Venus:   9.0 units
+Mars:    7.0 units
+Mercury: 6.0 units
+
+CAMERA POSITION
+---------------
+Position: (0.0, 600.0, 2500.0)
+Looking at: (0.0, 0.0, 0.0)
+Field of view: Increased to capture full solar system including outer planets
 
 GRAVITATIONAL CONSTANT: G (tuned for this scale)
 -----------------------
