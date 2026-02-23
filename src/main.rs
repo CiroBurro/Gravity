@@ -3,6 +3,7 @@
 //! This application simulates gravitational interactions between celestial bodies
 //! using Newtonian physics and the Bevy game engine for visualization.
 
+pub mod camera;
 pub mod components;
 pub mod grid;
 pub mod physics;
@@ -12,17 +13,19 @@ use bevy::{
         BLACK, BLUE, DARK_BLUE, LIGHT_BLUE, ORANGE, ORANGE_RED, RED, SANDY_BROWN, TAN, YELLOW,
     },
     prelude::*,
+    window::CursorOptions,
 };
+use camera::CameraPlugin;
 use components::*;
-use physics::systems::PhysicsPlugin;
-
 use grid::GridPlugin;
+use physics::systems::PhysicsPlugin;
 
 fn main() {
     App::new()
         .add_plugins(DefaultPlugins)
         .add_plugins(PhysicsPlugin)
         .add_plugins(GridPlugin)
+        .add_plugins(CameraPlugin)
         .insert_resource(ClearColor(Color::from(BLACK).lighter(0.005)))
         .add_systems(Startup, setup)
         .run();
@@ -35,7 +38,10 @@ fn setup(
     mut commands: Commands,
     mut meshes: ResMut<Assets<Mesh>>,
     mut materials: ResMut<Assets<StandardMaterial>>,
+    mut cursor_options: Single<&mut CursorOptions>,
 ) {
+    cursor_options.visible = false;
+
     commands.spawn((
         Camera3d::default(),
         Transform::from_xyz(0.0, 600.0, 1000.0).looking_at(Vec3::ZERO, Vec3::Y),
