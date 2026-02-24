@@ -15,7 +15,7 @@ use bevy::{
     prelude::*,
     window::CursorOptions,
 };
-use camera::CameraPlugin;
+use camera::systems::CameraPlugin;
 use components::*;
 use grid::GridPlugin;
 use physics::systems::PhysicsPlugin;
