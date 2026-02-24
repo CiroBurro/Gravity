@@ -6,6 +6,10 @@ A real-time gravitational physics simulator that bridges computer science and ph
 
 This project simulates gravitational forces between celestial bodies in 3D space using the Bevy game engine. It demonstrates how computational methods can accurately model physical phenomena, making abstract physics concepts tangible through interactive visualization.
 
+
+https://github.com/user-attachments/assets/c61c7ad5-562f-47ce-bef5-9a770349f0d1
+
+
 ## Features
 
 - Real-time N-body gravitational simulation
@@ -31,9 +35,8 @@ gravity/
 │       └── settings.rs   # Simulation parameters (G constant, softening)
 ├── Cargo.toml
 └── README.md
-
+```
 ## Building and Running
-
 ```bash
 cargo run --release
 ```
