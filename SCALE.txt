@@ -49,12 +49,43 @@ Venus:   9.0 units
 Mars:    7.0 units
 Mercury: 6.0 units
 
-CAMERA POSITION
----------------
-Position: (0.0, 600.0, 2500.0)
-Looking at: (0.0, 0.0, 0.0)
-Field of view: Increased to capture full solar system including outer planets
+CAMERA
+-------
+Initial Position: (0.0, 600.0, 1000.0)
+Looking at: Origin (0.0, 0.0, 0.0)
+Movement speed: 150.0 units/second (configurable)
+Speed modifier: 2.0× with Shift key
+Mouse sensitivity: 0.001 (X and Y axes)
+Pitch limit: ±89.4° (to prevent gimbal lock)
 
 GRAVITATIONAL CONSTANT: G (tuned for this scale)
 -----------------------
 Adjust in src/physics/settings.rs to balance orbital stability
+
+TIME INTEGRATION
+----------------
+Method: Forward Euler integration
+Time step: Frame-dependent (delta time from Bevy)
+Integration order: First-order
+
+Physics update sequence:
+1. Calculate all pairwise gravitational forces
+2. Update velocities: v' = v + (F/m)Δt
+3. Update positions: x' = x + vΔt
+
+PHYSICS CONSTANTS
+-----------------
+Gravitational constant (G): 0.07 (tuned for simulation scale)
+Softening factor (ε): 0.1 (prevents singularities at r → 0)
+Formula: F = G × m₁ × m₂ / (r² + ε)
+
+GRID VISUALIZATION
+------------------
+Grid size: 10,000 × 10,000 units
+Grid subdivisions: 100 (creates 101×101 vertices)
+Base height: -5.0 units (below orbital plane)
+Deformation: Modified Newtonian potential
+  φ = -Σ(G × M / r^α) × scale
+  where α = 0.6 (extended visualization vs standard 1/r)
+        scale = 0.01
+Note: Uses XZ plane projection only (ignoring Y coordinate)

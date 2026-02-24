@@ -3,6 +3,7 @@ use std::f32::consts::FRAC_PI_2;
 
 use crate::camera::settings::CameraSettings;
 
+/// Bevy plugin that manages camera controls and movement.
 pub struct CameraPlugin;
 
 impl Plugin for CameraPlugin {
@@ -13,6 +14,35 @@ impl Plugin for CameraPlugin {
     }
 }
 
+/// Handles keyboard-based camera movement in 3D space.
+///
+/// Reads WASD keys for horizontal movement, Space/Ctrl for vertical movement,
+/// and applies frame-rate independent motion using the camera's local coordinate
+/// system. Holding Shift applies a speed multiplier.
+///
+/// # Controls
+///
+/// - **W**: Move forward (camera's forward direction)
+/// - **S**: Move backward
+/// - **A**: Move left
+/// - **D**: Move right
+/// - **Space**: Move up
+/// - **Left Ctrl**: Move down
+/// - **Left Shift** (held): Apply speed multiplier from settings
+///
+/// # Algorithm
+///
+/// 1. Read keyboard input state for movement keys
+/// 2. Accumulate movement vector in camera's local space
+/// 3. Apply base speed or modified speed (if Shift held)
+/// 4. Update camera translation using frame delta time
+///
+/// # Parameters
+///
+/// - `keyboard`: Bevy input resource for key states
+/// - `time`: Bevy time resource for frame-independent movement
+/// - `query`: Query for Camera3d transform (expects exactly one camera)
+/// - `settings`: Camera configuration resource
 fn camera_movement(
     keyboard: Res<ButtonInput<KeyCode>>,
     time: Res<Time>,
@@ -49,6 +79,31 @@ fn camera_movement(
     }
 }
 
+/// Handles mouse-based camera rotation with pitch limiting.
+///
+/// Reads accumulated mouse motion and converts it to yaw/pitch rotation,
+/// applying sensitivity scaling and clamping pitch to prevent gimbal lock.
+///
+/// # Algorithm
+///
+/// 1. Read mouse delta from Bevy's accumulated motion
+/// 2. Scale delta by sensitivity settings (X for yaw, Y for pitch)
+/// 3. Extract current yaw, pitch, roll from camera rotation
+/// 4. Apply delta rotations to yaw and pitch
+/// 5. Clamp pitch to ±(π/2 - 0.01) to prevent flipping
+/// 6. Reconstruct rotation quaternion with clamped values
+///
+/// # Numerical Stability
+///
+/// Pitch is clamped to `FRAC_PI_2 - 0.01` (±89.4°) to prevent the camera
+/// from reaching exactly vertical orientation, which would cause gimbal lock
+/// and unpredictable rotation behavior.
+///
+/// # Parameters
+///
+/// - `mouse_motion`: Bevy resource containing accumulated mouse movement
+/// - `query`: Query for Camera3d transform (expects exactly one camera)
+/// - `settings`: Camera configuration resource with sensitivity values
 fn camera_rotation(
     mouse_motion: Res<AccumulatedMouseMotion>,
     mut query: Query<&mut Transform, With<Camera3d>>,
