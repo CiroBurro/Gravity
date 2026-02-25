@@ -12,8 +12,8 @@ pub struct GravitySettings {
 impl Default for GravitySettings {
     fn default() -> Self {
         GravitySettings {
-            g: 0.07,
-            softening: 0.1,
+            g: 0.08,
+            softening: 0.01,
         }
     }
 }

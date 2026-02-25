@@ -58,10 +58,6 @@ Speed modifier: 2.0× with Shift key
 Mouse sensitivity: 0.001 (X and Y axes)
 Pitch limit: ±89.4° (to prevent gimbal lock)
 
-GRAVITATIONAL CONSTANT: G (tuned for this scale)
------------------------
-Adjust in src/physics/settings.rs to balance orbital stability
-
 TIME INTEGRATION
 ----------------
 Method: Forward Euler integration
@@ -75,8 +71,8 @@ Physics update sequence:
 
 PHYSICS CONSTANTS
 -----------------
-Gravitational constant (G): 0.07 (tuned for simulation scale)
-Softening factor (ε): 0.1 (prevents singularities at r → 0)
+Gravitational constant (G): 0.08 (tuned for simulation scale)
+Softening factor (ε): 0.01 (prevents singularities at r → 0)
 Formula: F = G × m₁ × m₂ / (r² + ε)
 
 GRID VISUALIZATION

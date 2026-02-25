@@ -126,7 +126,7 @@ fn get_gravitation_force(m1: f32, m2: f32, g: f32, delta: Vec3, softening: f32) 
 /// - M: mass of each celestial body
 /// - r: 2D radial distance on the XZ plane
 /// - α: decay exponent (0.6 by default, lower values extend the visual effect)
-/// - scale: visualization scaling factor (0.01 by default)
+/// - scale: visualization scaling factor (0.09 by default)
 ///
 /// # Why modified from standard 1/r?
 ///
@@ -162,6 +162,6 @@ pub fn get_gravitation_potential(
         potential -= body.mass * settings.g / (r.powf(0.6) + settings.softening);
     }
 
-    // Scale down for visual range (adjust to taste)
-    potential * 0.01
+    // Scale down for visual range
+    potential * 0.09
 }

@@ -52,15 +52,14 @@ fn spawn_grid(
         ),
         MeshMaterial3d(materials.add(Color::from(WHITE))),
         Wireframe,
-        Transform::from_xyz(0.0, -5.0, 0.0),
+        Transform::from_xyz(0.0, 0.0, 0.0),
     ));
 }
 
 /// Updates the grid mesh vertices each frame to visualize spacetime curvature.
 ///
 /// Deforms the grid by calculating the gravitational potential at each vertex
-/// and adjusting its Y coordinate. The base height (-5.0) is offset by the
-/// potential value, creating "wells" under massive bodies.
+/// and adjusting its Y coordinate.
 fn update_grid(
     bodies: Query<(&CaelestialBody, &Transform)>,
     mut meshes: ResMut<Assets<Mesh>>,
@@ -75,7 +74,7 @@ fn update_grid(
     {
         for pos in positions.iter_mut() {
             let potential = get_gravitation_potential(&pos, &bodies, &settings);
-            pos[1] = -5.0 + potential;
+            pos[1] = potential;
         }
     }
 }
